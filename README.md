@@ -25,4 +25,29 @@
 ##### 匹配 匹配成功,返回h长度,否则0,可以使用n正则,n正则分组返回匹配分组的内容
     expr match "$var" "str"
     expr match "$var" "str\s"
+匹配头部:
+
     expr match "$var" "\([0-9]*\)"
+    expr "$var" : "\([0-9]*\)"
+匹配尾部:
+
+    expr match "$var" ".*\(...\)"
+    expr "$var" : ".*\(...\)"
+
+##### 删除 ${} 格式非expr
+删除头部制定字符串,如果没有匹配则不删除
+
+    echo ${var#substr}
+头部删除starto到end之间的字符
+
+    echo ${var#start*end}
+头部删除贪婪模式
+
+    echo ${var##start*end}
+
+从尾部删除则将#更换为%
+
+##### 替换 ${var[#|%]/old/new}
+    echo ${var[#|%]/old/new}
+*表达式中的 * 表示任意数量字符,非正则;#表示从前面匹配,%表示从后面匹配
+*
